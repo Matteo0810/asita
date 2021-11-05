@@ -22,14 +22,14 @@ from pyserv import Application
 # creating application instance
 app = Application()
 
-# listen the webserver on port (for instance port 1000)
-app.listen(1000, lambda error: listen_callback(error))
-
 # callback when web server is ready
 def listen_callback(error):
     if error:
         raise error
     print(f"Server listening on port 1000.")
+
+# listen the webserver on port (for instance port 1000)
+app.listen(1000, lambda error: listen_callback(error))
 ```
 
 ### **Application** class
@@ -59,12 +59,12 @@ from pyserv import Application
 # creating application instance
 app = Application()
 
-# "/" is the default path
-app.all("/", home)
-
 # some awesome things check request and response methods :-)
 def home(request, response):
     pass
+
+# "/" is the default path
+app.all("/", home)
 
 # check the first step :-)
 ....
