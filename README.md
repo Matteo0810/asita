@@ -104,9 +104,20 @@ app.all("/", home)
 | send(**data**, **type?**, **encoded?**, **is_asset?**) | data: **object**, type: **string**, encoded: **boolean**, is_asset: **boolean** | send response |
 | json(**data**) | data: **dict** | write json on a page |
 | render(**path**) | path: **string** | render **html** file. |
+| update_cookie(**cookie**) | cookie: **CookieParser** | update current client cookie |
 | end() | none | stop the current request |
 
 > **?** means that it is optionnal
+
+### **CookieParser** class
+
+| Name | Parameters | Description | 
+|------|:-----------:|:----------:|
+| add(**key**, **value**) | key: **string**, value: **string** | add cookie |
+| get(**key**) | key: **string** | get cookie |
+| delete(**key**) | key: **string** | delete cookie |
+
+## Enumerations
 
 ### **HttpMethods** class (Enumeration)
 
