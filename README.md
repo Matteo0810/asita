@@ -30,9 +30,9 @@ def listen_callback(error):
     print(f"Server listening on port 1000.")
 ```
 
-#### **Application** class
+### **Application** class
 
-##### Methods
+#### Methods
 
 | Name | Parameters | Description | 
 |------|:-----------:|:----------:|
@@ -68,9 +68,9 @@ def home(request, response):
 ....
 ```
 
-#### **Request** class
+### **Request** class
 
-##### Attributs
+#### Attributs
 
 | Name | Description | 
 |------|:-----------:|
@@ -84,16 +84,16 @@ def home(request, response):
 | body | the body content of the POST request |
 | query | url params |
 
-##### Methods
+#### Methods
 
 | Name | Parameters | Description | 
 |------|:-----------:|:----------:|
 | get(**value**) | value: **string** | get a header of the request |
 | accepts() | none | get types which are accepted |
 
-#### **Response** class
+### **Response** class
 
-##### Methods
+#### Methods
 
 | Name | Parameters | Description | 
 |------|:-----------:|:----------:|
@@ -106,7 +106,7 @@ def home(request, response):
 
 > **?** means that it is optionnal
 
-#### **HttpMethods** class (Enumeration)
+### **HttpMethods** class (Enumeration)
 
 | HTTP Methods |
 |------|
@@ -118,9 +118,9 @@ def home(request, response):
 | HEAD |
 | ALL |
 
-#### **HttpResponses** class (Enumeration)
+### **HttpResponses** class (Enumeration)
 
-##### Client side
+#### Client side
 
 | Response types | Codes |
 |------|:------:|
@@ -131,7 +131,7 @@ def home(request, response):
 | NOT_FOUND | **404** |
 | BAD_REQUEST | **400** |
 
-##### Server side
+#### Server side
 
 | Response types | Codes |
 |------|:------:|
