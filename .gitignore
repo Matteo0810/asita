@@ -1,6 +1,6 @@
-# IDE
+# ide
 .idea/
 .vscode
 
-# CACHE
+# cache
 **/__pycache__/
