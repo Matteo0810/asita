@@ -23,7 +23,7 @@ from pyserv import Application
 app = Application()
 
 # listen the webserver on port (for instance port 1000)
-app.listen(1000, lambda: error: listen_callback(error))
+app.listen(1000, lambda error: listen_callback(error))
 
 # callback when web server is ready
 def listen_callback(error):
