@@ -1,6 +1,8 @@
 # What is PyServ ?
 **PyServ** is a **web application framework for python**. It is designed to be easy to use and be more easy for **express-js users** to use python frameworks because it is based on **express-js framework**.
 
+[Download Count](https://img.shields.io/github/downloads/Matteo0810/PyServ/total)
+
 ## How to install PyServ ?
 
 installing and update using [pip](https://pip.pypa.io/en/stable/getting-started/)
