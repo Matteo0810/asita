@@ -9,7 +9,7 @@ For the moment, you just have to clone this project to your project file. it wil
 
 # Documentation
 
-## Create web application
+## Get started
 
 ### Exemple
 
