@@ -5,9 +5,7 @@
 
 ## How to install PyServ ?
 
-installing and update using [pip](https://pip.pypa.io/en/stable/getting-started/)
-
-`$ pip install PyServ`
+For the moment, you just have to clone this project to your project file. it will appear on [pip](https://pip.pypa.io/en/stable/getting-started/) soon as possible.
 
 # Documentation
 
