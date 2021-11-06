@@ -62,7 +62,7 @@ def home(request, response):
     pass
 
 # "/" is the default path
-app.all("/", home)
+app.all("/", lambda req, res: home(req, res))
 
 # check the first step :-)
 ....
