@@ -1,5 +1,4 @@
 from http.server import HTTPServer
-import json
 
 from .utils.HttpTypes import HttpMethods
 from .handlers.HttpRequestHandler import HttpRequestHandler
