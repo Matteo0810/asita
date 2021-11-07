@@ -5,7 +5,7 @@ with open("README.md", "r") as readme:
 
 setup(
     name="asita",
-    version="0.0.1",
+    version="0.1.0",
     author="Mattéo Gaillard",
     description="A web application framework",
     long_description=long_description,
