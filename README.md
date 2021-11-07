@@ -75,7 +75,7 @@ app.all("/", lambda req, res: home(req, res))
 | Name | Description | 
 |------|:-----------:|
 | headers | headers of the request |
-| session | session of user, stored in cookie |
+| session | client session |
 | path | the url's path |
 | request_type | type of request |
 | server_address | address of the requested server |
@@ -99,25 +99,38 @@ app.all("/", lambda req, res: home(req, res))
 |------|:-----------:|:----------:|
 | status(**code**) | code: **HttpResponses** | return the response's state |
 | set_header(**key**, **value**) | key: **string**, value: **string** | add/update headers |
-| send(**data**, **type?**, **encoded?**, **is_asset?**) | data: **object**, type: **string**, encoded: **boolean**, is_asset: **boolean** | send response |
+| send(**data**, **type?**, **encoded?**) | data: **object**, type: **string**, encoded: **boolean**, is_asset: **boolean** | send response |
 | json(**data**) | data: **dict** | write json on a page |
 | render(**path**) | path: **string** | render **html** file. |
-| update_cookie(**cookie**) | cookie: **CookieParser** | update current client cookie |
 | end() | none | stop the current request |
 
 > **?** means that it is optionnal
 
-### **CookieParser** class
+### **Sessions** class
 
 | Name | Parameters | Description | 
 |------|:-----------:|:----------:|
-| add(**key**, **value**) | key: **string**, value: **string** | add cookie |
-| get(**key**) | key: **string** | get cookie |
-| delete(**key**) | key: **string** | delete cookie |
+| add() | none | create new empty session |
+| all() | none | get all sessions |
+| has(**sessionId**) | key: **string** | verify if a session exists |
+| get(**sessionId**) | key: **string** | get a session by id |
+| delete(**sessionId**) | key: **string** | delete session by id  |
+| radnom_session_id **@Static method** | none | get all sessions |
+
+### **Session** class
+
+| Name | Parameters | Description | 
+|------|:-----------:|:----------:|
+| get_session_id | none | get the id of the session |
+| set(**key**, **value**) | key: **string**, value: **string** | add data to the client session |
+| has(**key**) | key: **string** | verify if client session has the selected data |
+| get(**key**) | key: **string** | get data from client session |
+| delete(**key**) | key: **string** | delete data from client session  |
+| all() | none | get client session data |
 
 ## Enumerations
 
-### **HttpMethods** class (Enumeration)
+### **HttpMethods**
 
 | HTTP Methods |
 |------|
@@ -129,7 +142,7 @@ app.all("/", lambda req, res: home(req, res))
 | HEAD |
 | ALL |
 
-### **HttpResponses** class (Enumeration)
+### **HttpResponses**
 
 #### Client side
 
