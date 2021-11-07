@@ -68,6 +68,8 @@ app.all("/", lambda req, res: home(req, res))
 ....
 ```
 
+> To see more example, check the example file.
+
 ### **Request** class
 
 #### Attributs
