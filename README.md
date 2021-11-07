@@ -1,5 +1,5 @@
 # What is Orbital ?
-**PyServ** is a **web application framework for python**. It is designed to be easy to use and be more easy for **javascript users** to use python frameworks because it is based on **express-js framework**.
+**Orbital** is a **web application framework for python**. It is designed to be easy to use and be more easy for **javascript users** to use python frameworks because it is based on **express-js framework**.
 
 ![License](https://img.shields.io/github/license/Matteo0810/PyServ.svg)
 
