@@ -1,13 +1,13 @@
-# What is PyServ ?
-**PyServ** is a **web application framework for python**. It is designed to be easy to use and be more easy for **javascript users** to use python frameworks because it is based on **express-js framework**.
+# What is Orbital ?
+**Orbital** is a **web application framework for python**. It is designed to be easy to use and be more easy for **javascript users** to use python frameworks because it is based on **express-js framework**.
 
 ![License](https://img.shields.io/github/license/Matteo0810/PyServ.svg)
 
-## How to install PyServ ?
+## How to install Orbital ?
 
 Install this package using [pip](https://pip.pypa.io/en/stable/getting-started/)
 
-`$ pip install py-serv-lib`
+`$ pip install orbital`
 
 # Documentation
 
