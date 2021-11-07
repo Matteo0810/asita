@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as readme:
+    long_description = readme.read()
+
 setup(
     name="orbital",
     version="0.0.1",
     author="Mattéo Gaillard",
     description="A web application framework",
-    long_description=open("README.md", "r", encoding="utf-8"),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Matteo0810/PyServ",
     packages=find_packages(),
