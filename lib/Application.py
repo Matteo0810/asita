@@ -8,7 +8,7 @@ class Application():
 
     def __init__(self):
         self.instance = None
-        self.routes = {}
+        self.routes = list()
         self.asset_directory = {}
         pass
 
@@ -41,24 +41,25 @@ class Application():
 
     def listen(self, port, callback):
         if not callback or not hasattr(callback, '__call__'):
-            raise ValueError("Callback doit être une fonction.")
+            raise ValueError("Callback must be a function.")
         if not port and type(port) is not int:
-            callback(ValueError("Aucun port précisé."))
+            callback(ValueError("No port found."))
         try:
             callback(None)
             self.instance = HTTPServer(('localhost', port), self._get_handler)
             self.instance.serve_forever()
         except:
-            callback(ConnectionError("Impossible de se connecter"))
+            callback(ConnectionError("Impossible connection"))
 
     def _add_route(self, path, request_type, callback):
         if not path or type(path) is not str:
-            raise ValueError("Chemin invalide.")
+            raise ValueError("Path not found.")
         if not callback or not hasattr(callback, '__call__'):
-            raise ValueError("Callback doit être une fonction.")
-
-        path = "/" + path
-        self.routes[path] = Route(path, request_type, callback)
+            raise ValueError("Callback must be a function.")
+        self.routes.append({
+            "path": path,
+            "route": Route(path, request_type, callback)
+        })
 
     def _get_handler(self, *args):
         HttpRequestHandler(self.routes, self.asset_directory, *args)

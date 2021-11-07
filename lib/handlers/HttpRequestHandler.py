@@ -1,57 +1,62 @@
-from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler
+from lib.utils.sessions.Sessions import Sessions
+
+import traceback
 
 from .Request import Request
-from lib.utils.HttpTypes import HttpMethods
+from lib.utils.HttpTypes import HttpMethods, HttpResponses
 from .Response import Response
 
-cookies = SimpleCookie()
+sessions = Sessions()
 
 class HttpRequestHandler(BaseHTTPRequestHandler):
 
     def __init__(self, routes, asset_directory, *args):
-        global cookies
+        global sessions
 
         self.routes = routes
-        self.cookie = cookies
+        self.sessions = sessions
         self.asset_directory = asset_directory
         BaseHTTPRequestHandler.__init__(self, *args)
 
     def do_GET(self):
         result = self._is_asset()
-        response = Response(self, self.cookie)
+        response = Response(self, self.sessions)
 
         if result:
             data, type, encoded = result
-            return response.send(data, type, encoded, True)
-        return self._handle_route(response, HttpMethods.GET)
+            return response.send(data, type, encoded)
+        return self._handle_route(HttpMethods.GET, response)
 
     def do_POST(self):
-        self._handle_route(Response(self, self.cookie), HttpMethods.POST)
+        self._handle_route(HttpMethods.POST)
 
     def do_HEAD(self):
-        self._handle_route(Response(self, self.cookie), HttpMethods.HEAD)
+        self._handle_route(HttpMethods.HEAD)
 
     def do_PATCH(self):
-        self._handle_route(Response(self, self.cookie), HttpMethods.PATCH)
+        self._handle_route(HttpMethods.PATCH)
 
     def do_PUT(self):
-        self._handle_route(Response(self, self.cookie), HttpMethods.PUT)
+        self._handle_route(HttpMethods.PUT)
 
     def do_DELETE(self):
-        self._handle_route(Response(self, self.cookie), HttpMethods.DELETE)
+        self._handle_route(HttpMethods.DELETE)
     
-    def _handle_route(self, response, method):
-        path = "/" + self.path.split('?')[0]
-        if path not in self.routes:
-            return response.send(f'Cannot {method.value} {self.path}')
+    def _handle_route(self, method, response = None):
+        response = response or Response(self, self.sessions)
+        path = self.path.split('?')[0]
+
         try: 
-            route = self.routes[path]
-            if route and (route.has_method(method) or route.has_method(HttpMethods.ALL)):
-                return route.handle(Request(self), response)
-            return response.send(f'Cannot {method.value} {self.path}')
-        except Exception as error:
-            response.send(str(error.with_traceback()))
+            for route in self.routes:
+                if route['path'] == path:
+                    route = route['route']
+                    if route and (route.has_method(method) or route.has_method(HttpMethods.ALL)):
+                        return route.handle(Request(self, self.sessions), response)
+            return response.status(HttpResponses.NOT_FOUND) \
+                .send(f'Cannot {method.value} {path}')
+        except Exception:
+            response.send(traceback.format_exc())
 
     def _is_asset(self):
         if self.asset_directory:

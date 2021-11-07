@@ -1,15 +1,17 @@
-import json, base64
+import json
+from lib.utils.sessions.Session import Session
+from lib.utils.sessions.Sessions import Sessions
 
 class Request():
     
-    def __init__(self, data):
+    def __init__(self, data, sessions):
         """
             Permet de récupérer les informations d'une requête
             data: BaseHTTPRequestHandler, les informations de la requête
         """
         self.data = data
+        self.sessions = sessions
         self.headers = data.headers
-        self.session = self._parse_session()
         self.path = data.path
         self.request_type = data.command
         self.server_address = data.client_address
@@ -18,25 +20,15 @@ class Request():
 
         self.query = self._parse_query()
         self.body = self._parse_body()
-    
+        self.session = self._parse_session()
+
     def _parse_session(self):
-        """
-            permet de récupérer la session
-        """
-        try:
-            value = self.get('Cookie')
-            value = value.split('session=').pop()
-            value = base64.b64decode(value)
-            value = str(value, 'utf-8')
-            return json.loads(value)
-        except:
-            return {}
+        cookie = self.get('Cookie')
+        if cookie:
+            return self.sessions.get(cookie.split('=').pop())
+        return Session(Sessions.random_session_id())
 
     def _parse_body(self):
-        """
-            permet de récupérer le contenu du body
-            envoyé par l'utilisateur lors d'une requête POST.
-        """
         content_length = self.get('Content-Length')
         result = {}
         
@@ -48,10 +40,6 @@ class Request():
         return result
 
     def _parse_query(self):
-        """
-            récupérer la query dans la requête
-            retourne un dictionnaire
-        """
         chars = self.path.split('?')
         if len(chars) < 2:
             return {}
@@ -63,15 +51,7 @@ class Request():
         return queries
 
     def get(self, value):
-        """
-            récupérer une entête spécifique
-            value: str, l'entête voulant être récupéré
-            retourne un str, l'entête voulu
-        """
         return self.headers.get(value)
 
     def accepts(self):
-        """
-            savoir les type de valeur acceptés par l'entête
-        """
         return self.headers.get("accept")
