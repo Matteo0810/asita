@@ -1,10 +1,8 @@
-from debug import debug
-from lib.Application import Application
+from asita.application import Application
 
 app = Application()
 
 def test(req, res):
-    debug(f'HTTP Method requested: {req.request_type}', True)
     res.send(f"Page requested with HTTP Method '{req.request_type}'")
 
 # post method
@@ -30,7 +28,7 @@ app.all("/all_methods", lambda req, res: test(req, res))
 
 def listen_callback(error):
     if error:
-        return debug("Impossible connection", False)
-    debug("Application listening on port 1000", True)
+        raise error
+    print("Application listening on port 1000")
 
 app.listen(1000, lambda error: listen_callback(error))
