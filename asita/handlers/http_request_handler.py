@@ -1,10 +1,10 @@
 from http.server import BaseHTTPRequestHandler
-from lib.utils.sessions.sessions import Sessions
+from asita.utils.sessions.sessions import Sessions
 
 import traceback
 
 from .request import Request
-from lib.utils.http_types import HttpMethods, HttpResponses
+from asita.utils.http_types import HttpMethods, HttpResponses
 from .response import Response
 
 sessions = Sessions()
@@ -42,6 +42,9 @@ class HttpRequestHandler(BaseHTTPRequestHandler):
 
     def do_DELETE(self):
         self._handle_route(HttpMethods.DELETE)
+
+    def do_OPTIONS(self):
+        self._handle_route(HttpMethods.OPTIONS)
     
     def _handle_route(self, method, response = None):
         response = response or Response(self, self.sessions)

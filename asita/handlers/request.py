@@ -1,6 +1,6 @@
 import json
-from lib.utils.sessions.session import Session
-from lib.utils.sessions.sessions import Sessions
+from asita.utils.sessions.session import Session
+from asita.utils.sessions.sessions import Sessions
 
 class Request():
     

@@ -19,3 +19,4 @@ class HttpMethods(Enum):
     HEAD = "HEAD"
     PATCH = "PATCH"
     ALL = "ALL"
+    OPTIONS = "OPTIONS"

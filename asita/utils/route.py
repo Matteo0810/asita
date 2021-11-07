@@ -1,4 +1,4 @@
-from lib.utils.http_types import HttpMethods
+from asita.utils.http_types import HttpMethods
 
 class Route():
 

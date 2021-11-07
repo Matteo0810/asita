@@ -16,7 +16,7 @@ Install this package using [pip](https://pip.pypa.io/en/stable/getting-started/)
 ### Exemple
 
 ```python
-from asita.application import Application
+from asita import Application
 
 # creating application instance
 app = Application()

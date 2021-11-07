@@ -1,7 +1,7 @@
 import json
 from os.path import exists
 
-from lib.utils.http_types import HttpResponses 
+from asita.utils.http_types import HttpResponses 
 
 class Response():
 
