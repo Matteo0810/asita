@@ -7,7 +7,7 @@
 
 Install this package using [pip](https://pip.pypa.io/en/stable/getting-started/)
 
-`$ pip install python-server`
+`$ pip install py-serv-lib`
 
 # Documentation
 
