@@ -1,10 +1,10 @@
 from http.server import BaseHTTPRequestHandler
-from asita.utils.sessions.sessions import Sessions
-
 import traceback
 
+from ..sessions.sessions import Sessions
+from ..utils.http_types import HttpMethods, HttpResponses
+
 from .request import Request
-from asita.utils.http_types import HttpMethods, HttpResponses
 from .response import Response
 
 sessions = Sessions()

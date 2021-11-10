@@ -1,10 +1,11 @@
 import json
-from asita.utils.sessions.session import Session
-from asita.utils.sessions.sessions import Sessions
+
+from ..sessions.session import Session
+from ..sessions.sessions import Sessions
 
 class Request():
     
-    def __init__(self, data, sessions):
+    def __init__(self, data, sessions: Sessions):
         """
             Permet de récupérer les informations d'une requête
             data: BaseHTTPRequestHandler, les informations de la requête
@@ -12,17 +13,17 @@ class Request():
         self.data = data
         self.sessions = sessions
         self.headers = data.headers
-        self.path = data.path
-        self.request_type = data.command
-        self.server_address = data.client_address
-        self.server_version = data.server_version
-        self.protocol_version = data.protocol_version
+        self.path: str = data.path
+        self.request_type: str = data.command
+        self.server_address: str = data.client_address
+        self.server_version: str = data.server_version
+        self.protocol_version: str = data.protocol_version
 
         self.query = self._parse_query()
         self.body = self._parse_body()
         self.session = self._parse_session()
 
-    def _parse_session(self):
+    def _parse_session(self) -> Session:
         cookie = self.get('Cookie')
         if cookie:
             return self.sessions.get(cookie.split('=').pop())
@@ -50,8 +51,8 @@ class Request():
             queries[char[0]] = char[1]
         return queries
 
-    def get(self, value):
+    def get(self, value) -> str:
         return self.headers.get(value)
 
-    def accepts(self):
-        return self.headers.get("accept")
+    def accepts(self) -> str:
+        return self.headers.get('accept')

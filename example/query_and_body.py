@@ -5,10 +5,11 @@ app = Application()
 def get_form(request, response):
     response.json({
         "body": request.body,
-        "query": request.query
+        "query": request.query,
+        "params": request.params
     })
 
-app.post("/", lambda req, res: get_form(req, res))
+app.post("/:name", lambda req, res: get_form(req, res))
 
 def listen_callback(error):
     if error:

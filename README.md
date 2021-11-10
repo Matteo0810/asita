@@ -31,12 +31,13 @@ def listen_callback(error):
 app.listen(1000, lambda error: listen_callback(error))
 ```
 
-### **Application** class
+### **Router** class
 
 #### Methods
 
 | Name | Parameters | Description | 
 |------|:-----------:|:----------:|
+| use(**path**, **router**) | path: **str**, callback: **Router** | create a router with default path like "/profile" and put some routes like "/add" |
 | all(**path**, **callback**) | path: **string**, callback: **function** | Routes an HTTP request, where **all** is the HTTP method such as GET, PUT, POST, OATCH, DELETE, HEAD |
 | post(**path**, **callback**) | path: **string**, callback: **function** | Routes HTTP POST requests |
 | get(**path**, **callback**) | path: **string**, callback: **function** | Routes HTTP GET requests |
@@ -44,6 +45,13 @@ app.listen(1000, lambda error: listen_callback(error))
 | patch(**path**, **callback**) | path: **string**, callback: **function** | Routes HTTP PATCH requests |
 | delete(**path**, **callback**) | path: **string**, callback: **function** | Routes HTTP DELETE requests |
 | head(**path**, **callback**) | path: **string**, callback: **function** | Routes HTTP HEAD requests |
+
+### **Application** class
+
+#### Methods
+
+| Name | Parameters | Description | 
+|------|:-----------:|:----------:|
 | define_asset(**name**, **directory**) | name: **string**, directory: **string** | Define the asset directory access |
 | listen(**port**, **callback**) | port: **integer**, callback: **function** | start listening a port |
 

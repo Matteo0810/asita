@@ -1,7 +1,7 @@
 import json
 from os.path import exists
 
-from asita.utils.http_types import HttpResponses 
+from ..utils.http_types import HttpResponses 
 
 class Response():
 
@@ -13,7 +13,7 @@ class Response():
         self.statusHandled = False
         
 
-    def status(self, code):
+    def status(self, code: int):
         if not isinstance(code, HttpResponses):
             raise Exception("Please, make sur this is an instance of HTTPResponses")
         self.currentStatus = code
@@ -26,15 +26,15 @@ class Response():
         self.data.flush_headers()
         return self
 
-    def set_header(self, key, value):
+    def set_header(self, key: str, value: str):
         self.headers[key] = value
         return self
 
-    def send_header(self, key, value):
+    def send_header(self, key: str, value: str):
         self.data.send_header(key, value)
         return self
         
-    def send(self, data, type = None, encoded = True):
+    def send(self, data: object, type: str = None, encoded: bool = True):
         self.status(self.currentStatus) \
             .set_header("Content-type", (type, "text/plain")[not type])
         self._store_session()
@@ -52,10 +52,10 @@ class Response():
             session = self.sessions.add()
             self.set_header("Set-Cookie", session)
     
-    def json(self, data):
+    def json(self, data: dict):
         return self.send(json.dumps(data), "application/json")
 
-    def render(self, path):
+    def render(self, path: str):
         if not path.startswith('./'):
             path = "./" + path
         if not path.endswith(".html"):
