@@ -9,7 +9,7 @@ def get_form(request, response):
         "params": request.params
     })
 
-app.post("/:name", lambda req, res: get_form(req, res))
+app.post("/", lambda req, res: get_form(req, res))
 
 def listen_callback(error):
     if error:
