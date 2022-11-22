@@ -23,7 +23,7 @@ app.head("/", lambda req, res: test(req, res))
 # patch method
 app.patch("/", lambda req, res: test(req, res))
 
-# all methods (I putted all_methods after to avoid bugs)
+# all methods
 app.all("/all_methods", lambda req, res: test(req, res))
 
 def listen_callback(error):
